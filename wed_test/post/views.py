@@ -39,3 +39,11 @@ def post_create(request):
     return render(request, 'post/post_create.html', context)
 
 
+def post_delete(request, post_pk):
+    if request.method == "POST":
+        post = Post.objects.get(pk=post_pk)
+        post.delete()
+        return redirect('post_list')
+    else:
+        return redirect('post_list')
+

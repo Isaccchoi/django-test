@@ -12,11 +12,15 @@
     <div class="container">
         {% for post in posts %}
             <div>
-                <h3>post.title</h3>
+                <h3>{{ post.title }}</h3>
                 {% if post.photo %}
-                    <img src="{{ post.photo.url }}" alt="">
+                    <img src="{{ post.photo.url }}" alt="" style="width: 600px; height: auto;">
                 {% endif %}
                 <p>{{ post.content }}</p>
+                <form action="{% url 'post_delete' post_pk=post.pk %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="글 삭제">
+                </form>
             </div>
         {% endfor %}
 

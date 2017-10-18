@@ -8,13 +8,17 @@
     <title>Django Test Project</title>
 </head>
 <body>
-    <h1>{{ post.title }}</h1>
-    {% if post.photo %}
-        <img src="{{ post.photo.url }}" alt="">
-    {% endif %}
-    <p>
-        {{ post.content }}
-    </p>
+<h1>{{ post.title }}</h1>
+{% if post.photo %}
+    <img src="{{ post.photo.url }}" alt="" style="width: 600px; height: auto;">
+{% endif %}
+<p>
+    {{ post.content }}
+</p>
+<form action="{% url 'post_delete' post_pk=post.pk %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="글 삭제">
+</form>
 
 </body>
 </html>
